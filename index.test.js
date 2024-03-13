@@ -90,3 +90,25 @@ describe("Employee Static Properties and Methods Tests", () => {
         expect(Employees.getTotalPayroll()).toBe(515000)
     })
 })
+
+describe("Stretch Goals", () => {
+    const malik = Employees.getEmployees()[4];
+    test("Throws an error if salary is set to a negative value", () => {
+        expect(() => {
+            malik.setSalary(-50000);
+        }).toThrow("Salary cannot be negative");
+    });
+
+    test("findClient should return client by index", () => {
+        expect(malik.findClient(1)).toBe("MySpace");
+    })
+
+    test("promote should update position and salary", () => {
+        malik.promote("Enterprise Sales Manager", 110000);
+        expect(malik.position).toBe("Enterprise Sales Manager");
+        expect(malik.getSalary()).toBe(110000);
+        malik.promote("Enterprise Sales Associate", 90000);
+        expect(malik.position).toBe("Enterprise Sales Associate");
+        expect(malik.getSalary()).toBe(90000);
+    })
+})
